@@ -43,10 +43,14 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 
 @app.route("/")
 def index():
+    return "<h1> Hello from flask </h1>"
+
+
+@app.route("/rewards")
+def rewards():
     rewards = Reward.query.all()
     reward_schema = RewardSchema(many=True)
     output = reward_schema.dump(rewards)
-
     return jsonify({"data": output})
 
 
