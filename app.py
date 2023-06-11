@@ -2,13 +2,16 @@ from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import sqlalchemy as sa
-from marshmallow import Schema
-import json
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
-
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URI")
+# "mysql://sql12625244:w3lsiUP7lU@sql12.freesqldatabase.com/sql12625244"
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
